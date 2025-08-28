@@ -21,7 +21,7 @@ type Action =
   | { type: 'UPDATE_USER'; payload: User }
   | { type: 'SET_POSTS'; payload: Post[] }
   | { type: 'ADD_POST'; payload: Post }
-  | { type: 'REMOVE_POST'; payload: number } // id
+  | { type: 'REMOVE_POST'; payload: number }
   | { type: 'SET_COMMENTS'; postId: number; payload: Comment[] }
   | { type: 'ADD_COMMENT'; postId: number; payload: Comment }
   | { type: 'TOGGLE_LIKE'; postId: number }

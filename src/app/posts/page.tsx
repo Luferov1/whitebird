@@ -46,7 +46,6 @@ export default function PostsPage() {
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Posts</h1>
 
-      {/* фильтры */}
       <div className="flex flex-col md:flex-row gap-2 items-center">
         <input
           type="text"

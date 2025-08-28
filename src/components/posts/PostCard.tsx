@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useAppContext } from '../../context/AppContext';
 import { Post } from '../../lib/types';
 
@@ -39,7 +41,9 @@ export default function PostCard({ post }: { post: Post }) {
 
   return (
     <div className="border rounded p-4 shadow">
-      <h2 className="font-semibold text-lg">{post.title}</h2>
+      <Link href={`/posts/${post.id}`}>
+        <h2 className="font-semibold text-lg">{post.title}</h2>
+      </Link>
       <p className="text-gray-700">{post.body}</p>
 
       <div className="flex gap-2 mt-3">
