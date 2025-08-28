@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# White Bird Blog App
 
-## Getting Started
+**Деплой:** [https://whitebird-iota.vercel.app/](https://whitebird-iota.vercel.app/)
 
-First, run the development server:
+---
+
+## 📌 Описание
+
+Блог-приложение на **Next.js 15** с клиентским рендерингом и использованием контекста для управления состоянием.
+
+Реализовано:
+
+- Просмотр постов и пользователей
+- Детали поста + комментарии
+- Лайк/дизлайк/избранное
+- Создание и удаление локальных постов
+- Управление приоритетом постов (админ)
+- Редактирование пользователей (админ)
+- Редактирование профиля текущего пользователя
+- Страница избранного `/favorites`
+
+---
+
+## 🏗 Архитектура
+
+- **Next.js 15** (App Router)
+- **React 19** + **TypeScript 5**
+- **Tailwind CSS 4** для стилей
+- **Context API + useReducer** для глобального состояния
+- **localStorage** для сохранения данных между сессиями
+
+### Контекст
+
+`AppContext` хранит:
+
+- `currentUser` — текущий пользователь
+- `users` — список всех пользователей
+- `posts` — список всех постов (API + локальные)
+- `comments` — комментарии по `postId`
+- `likes` — объект `{ likes: Set<number>, dislikes: Set<number> }`
+- `favorites` — объект `{ favorites: Set<number> }`
+- `priorities` — объект `{ [postId]: number }`
+
+Действия (`dispatch`) включают:
+
+- `SET_USERS`, `UPDATE_USER`, `SET_CURRENT_USER`
+- `SET_POSTS`, `ADD_POST`, `REMOVE_POST`
+- `SET_COMMENTS`, `ADD_COMMENT`
+- `TOGGLE_LIKE`, `TOGGLE_DISLIKE`, `TOGGLE_FAVORITE`
+- `SET_PRIORITY`
+
+### LocalStorage ключи
+
+| Ключ            | Описание |
+|-----------------|----------|
+| `currentUser`   | Текущий пользователь |
+| `users`         | Все пользователи |
+| `posts`         | Все посты (API + локальные) |
+| `comments`      | Комментарии по `postId` |
+| `likes`         | `{ likes: number[], dislikes: number[] }` |
+| `favorites`     | `{ favorites: number[] }` |
+| `priorities`    | `{ [postId]: number }` |
+
+---
+
+## 🚀 Запуск
+
+1. Клонировать репозиторий:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repo-url>
+cd <repo-folder>
+```
+2. Установить зависимости:
+```bash
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Запустить проект:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Открыть в браузере:
+```bash
+http://localhost:3000
+```
