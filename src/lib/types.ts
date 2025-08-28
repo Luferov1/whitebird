@@ -29,6 +29,7 @@ export interface Post {
   title: string;
   body: string;
   isLocal?: boolean;
+  priority?: number;
 }
 
 export interface Comment {
