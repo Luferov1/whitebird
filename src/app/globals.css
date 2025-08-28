@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: white;
+  @apply bg-gray-50 text-gray-900;
   margin: 0;
   padding: 0;
   height: 100%;
