@@ -1,22 +1,25 @@
-import { Roboto } from 'next/font/google';
+import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 
+import { AppProvider } from '@/src/context/AppContext';
+
 import './globals.css';
+import Header from '../components/Header';
 
-const roboto = Roboto({
-  weight: ['400', '500', '700'],
-  subsets: ['latin', 'cyrillic'],
-  display: 'swap',
-});
+export const metadata: Metadata = {
+  title: 'White Bird Forum',
+  description: 'Test forum app built with Next.js',
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <AppProvider>
+          <Header />
+          <main className="flex-1 container mx-auto px-4 py-6">{children}</main>
+        </AppProvider>
+      </body>
     </html>
   );
 }
