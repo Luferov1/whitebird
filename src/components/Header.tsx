@@ -9,6 +9,7 @@ const navItems = [
   { href: '/posts', label: 'Posts' },
   { href: '/users', label: 'Users' },
   { href: '/profile', label: 'Profile' },
+  { href: '/favorites', label: 'Favorites' },
   { href: '/admin', label: 'Admin' },
 ];
 
