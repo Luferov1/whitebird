@@ -13,8 +13,6 @@ export default function PostCard({ post }: { post: Post }) {
   const isDisliked = state.likes.dislikes.has(post.id);
   const isFav = state.favorites.favorites.has(post.id);
 
-  const priority = state.priorities[post.id] ?? post.priority ?? 0;
-
   const toggleLike = () => {
     dispatch({ type: 'TOGGLE_LIKE', postId: post.id });
   };
@@ -29,14 +27,6 @@ export default function PostCard({ post }: { post: Post }) {
 
   const deletePost = () => {
     dispatch({ type: 'REMOVE_POST', payload: post.id });
-  };
-
-  const increasePriority = () => {
-    dispatch({
-      type: 'SET_PRIORITY',
-      postId: post.id,
-      payload: priority + 1,
-    });
   };
 
   return (
@@ -61,9 +51,6 @@ export default function PostCard({ post }: { post: Post }) {
         </button>
         <button onClick={toggleFav} className={`px-3 py-1 rounded ${isFav ? 'bg-yellow-400' : 'bg-gray-200'}`}>
           ⭐
-        </button>
-        <button onClick={increasePriority} className="px-3 py-1 rounded bg-purple-500 text-white">
-          ⬆ Priority ({priority})
         </button>
       </div>
 

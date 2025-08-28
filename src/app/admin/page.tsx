@@ -66,6 +66,13 @@ export default function AdminPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Admin Panel</h1>
 
+      <button
+        onClick={() => router.push('/admin/posts')}
+        className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+      >
+        Edit Posts
+      </button>
+
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300">
           <thead className="bg-gray-100">
