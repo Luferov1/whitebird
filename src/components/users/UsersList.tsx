@@ -1,26 +1,19 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useAppContext } from '../../context/AppContext';
-import { User } from '../../lib/types';
 import UserCard from './UserCard';
 
-export default function UsersList({ initialUsers }: { initialUsers: User[] }) {
-  const { state, dispatch } = useAppContext();
+export default function UsersList() {
+  const { state } = useAppContext();
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
 
-    return initialUsers.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
-  }, [query, initialUsers]);
-
-  useEffect(() => {
-    if (state.users.length === 0 && initialUsers.length > 0) {
-      dispatch({ type: 'SET_USERS', payload: initialUsers });
-    }
-  }, [dispatch, initialUsers, state.users.length]);
+    return state.users.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+  }, [query, state.users]);
 
   return (
     <div className="space-y-4">
